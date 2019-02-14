@@ -1,19 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Doctor;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Doctor;
 use App\Http\Requests\PostRequest;
 
 class PostController extends BaseController
 {
     public function index(Request $request)
     {
+        
+         $doctor = \Auth::user();
+        //dd($user->id);
         $q = $request['q'];
         $active = $request['active'];
         $items = Post::whereRaw('true');
-
+        
+         $items=$items->where('users_id',$doctor->id); 
+         //dd($items);
         if($q)
             $items->whereRaw('(title like ? )',["%$q%"]);
 
@@ -23,14 +29,16 @@ class PostController extends BaseController
         $items = $items->paginate(10)
             ->appends(['q'=>$q, 'active'=>$active]);
 
-        return view('admin.article.index')
+        return view('doctor.post.index')
             ->with('title','Manage Posts')
             ->with('items',$items);
+    
     }
 
     public function create()
     {
-        return view('admin.article.create')->with('title','Create New Post');
+        return view('doctor.post.create')
+                ->with('title','Create New Post');
     }
     public function store(PostRequest $request)
     {
@@ -41,7 +49,7 @@ class PostController extends BaseController
         }
         else{
             \Session::flash('msg','e:You must select Post Image');
-            return redirect('/admin/article/create')->withInput();
+            return redirect('/doctor/post/create')->withInput();
         
         }
         $request['image'] = $photo;
@@ -49,7 +57,7 @@ class PostController extends BaseController
          Post::create($request->all());
 
         \Session::flash('msg','s:Post Created Successfully');
-        return redirect('/admin/article/create');
+        return redirect('/doctor/post/create');
     }
 
     
@@ -58,9 +66,9 @@ class PostController extends BaseController
         $item = Post::find($id);
         if(!$item){
             \Session::flash('msg','e:Invalid Item ID');
-            return redirect('/admin/article');        
+            return redirect('/doctor/post');        
         }
-        return view('admin.article.edit')->with('title','Edit Post')
+        return view('doctor.post.edit')->with('title','Edit Post')
             ->with('item',$item);
     }
 
@@ -76,13 +84,13 @@ class PostController extends BaseController
         $item->update($request->all());
 
         \Session::flash('msg','s:Post Updated Successfully');
-        return redirect('/admin/article');
+        return redirect('/doctor/post');
     }
     public function destroy($id)
     {
         $item = Post::find($id);
         $item->delete();
         \Session::flash('msg','w:Post Deleted Successfully');
-        return redirect('/admin/article');
+        return redirect('/doctor/post');
     }
 }

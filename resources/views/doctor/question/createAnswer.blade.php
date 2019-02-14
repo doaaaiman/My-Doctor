@@ -1,11 +1,17 @@
-@extends('admin._dashboard_layout')
-@section('title','Create Answer')
+@extends('layouts.app')
+@section('title',$title)
 @section('content')
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br>
 
-<div class="col-lg-12 stretch-card">
+<!-- Main Content -->
+    <div class="container">
 
-
-    <form class="forms-sample" method="post" enctype="multipart/form-data" action="/admin/question/{{$question->id}}/addAnswer">
+    <form class="forms-sample" method="post" enctype="multipart/form-data" action="/doctor/question/{{$question->id}}/addAnswer">
         @csrf
 
         <div class="form-group row ">
@@ -23,7 +29,7 @@
         <div class="form-group row">
             <div class="col-sm-9 offset-sm-2 mt-3">
         <button type="submit" class="btn btn-success mr-2">Submit</button>
-        <a href="/admin/question" class="btn btn-dark">Cancel</a>
+        <a href="/doctor/question" class="btn btn-dark">Cancel</a>
         </div>
         </div>
     </form>

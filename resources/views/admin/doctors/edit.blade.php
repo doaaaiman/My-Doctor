@@ -41,7 +41,7 @@
                         <select autofocus id="specialties_id" class="form-control" name="specialties_id" >
                             <option value='0'>Select Specialty</option>
                             @foreach($specialties as $specialty)
-                            <option {{old('specialties_id')==$specialty->id?"selected":""}} value='{{$specialty->id}}'>{{$specialty->name}}</option>
+                            <option {{$doctor->specialties_id==$specialty->id?"selected":""}} value='{{$specialty->id}}'>{{$specialty->name}}</option>
                             @endforeach
                         </select>
                     </div>

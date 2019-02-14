@@ -1,8 +1,12 @@
-@extends('admin._bslayout')
+@extends('layouts.app')
 @section('title',$title)
 @section('content')
-
-
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br>
 
     <!-- Main Content -->
     <div class="container">

@@ -48,7 +48,7 @@ Route::get('/admin/comment/{id}/delete','Admin\ArticleController@delete');
 Route::resource('/admin/post','Admin\ArticleController');
 
 
-/********************QusetionController*************/
+/********************QusetionControllerforAdmin*************/
 Route::get('/admin/question/{id}/answer','Admin\ManageQuestionController@answers');
 Route::get('/admin/question/{id}/delete','Admin\ManageQuestionController@destroy');
 Route::get('/admin/answer/{id}/delete','Admin\ManageQuestionController@delete');
@@ -74,5 +74,13 @@ Route::get('/register/doctor','Auth\RegisterController@doctorRegister')->name('d
 Route::post('/register/doctor','Auth\RegisterController@postDoctorRegister')->name('post-doctor-register');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/doctor/post', 'Doctor\PostController');
 Route::get('/doctor/home', 'Doctor\HomeController@index')->name('doctor.home');
 Route::get('/patient/home', 'Patient\HomeController@index')->name('patient.home');
+
+
+/***********************QuestionControllerForDoctor*************/
+Route::get('/doctor/question/{id}/answer','Doctor\QuestoinController@answers');
+Route::get('/doctor/question/{id}/addAnswer','Doctor\QuestoinController@addAnswer');
+Route::post('/doctor/question/{id}/addAnswer','Doctor\QuestoinController@postAddAnswer');
+Route::resource('/doctor/question', 'Doctor\QuestoinController');

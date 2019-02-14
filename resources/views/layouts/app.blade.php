@@ -66,6 +66,7 @@
                         @foreach($menus->where('parent_id',0) as $topMenu)
                         <?php
                             $subMenus = $menus->where('parent_id',$topMenu->id);
+                            //dd($topMenu);
                         ?>
 
                         @if(count($subMenus)>0)

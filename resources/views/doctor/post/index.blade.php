@@ -1,9 +1,12 @@
-@extends('admin._bslayout')
+@extends('layouts.app')
 @section('title',$title)
 @section('content')
-
-
-
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br>
     <!-- Main Content -->
     <div class="container">
         <form class="row">
@@ -21,7 +24,7 @@
                 <input type="submit" value="Search" class="btn btn-primary" />
             </div>
             <div class="col-3">
-                <a href="/admin/article/create" class="btn btn-success">Create New Article</a>
+                <a href="/doctor/post/create" class="btn btn-success">Create New Post</a>
             </div>
         </form>
         @if($items->count()>0)
@@ -41,8 +44,8 @@
                   <td>{{$item->updated_at}} </td>
                   <td>{{$item->active?'Active':'Inactive'}}</td>
                   <td>
-                    <a href='/admin/article/{{$item->id}}/edit' class='btn btn-sm btn-primary'>Edit</a>
-                    <a onclick="return confirm('Are you sure dude?')" href='/admin/article/{{$item->id}}/delete' class='btn btn-sm btn-danger'>Delete</a>
+                    <a href='/doctor/post/{{$item->id}}/edit' class='btn btn-sm btn-primary'>Edit</a>
+                    <a onclick="return confirm('Are you sure dude?')" href='/doctor/post/{{$item->id}}/delete' class='btn btn-sm btn-danger'>Delete</a>
                   </td>
                 </tr>
             @endforeach
