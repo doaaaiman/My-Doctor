@@ -1,45 +1,60 @@
-
 @extends('admin._dashboard_layout')
-@section('title','Update Question')
+@section('title','Update Post')
 @section('content')
 
-<div class="col-lg-12 stretch-card">
-    <div class="card">
-        <div class="card-body">
-                 <form class="forms-sample" method="post" enctype="multipart/form-data" action="/admin/question/{{$question->id}}">
-                @csrf
-                 @method('put')
-                  <div class="form-group row ">
-                    <label for="userid" class="col-sm-4 col-form-label">user id</label>
-                    <div class="col-sm-6">
-                        <input autofocus value="{{$question->id}}" type="text" class="form-control" id="id" name="users_id" placeholder="user id">
-                    </div>
+<!-- Main Content -->
+    <div class="container">
+        <form method="post" enctype="multipart/form-data"  action="/admin/post/{{$item->id}}">
+            @csrf
+            @method('put')
+            <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-8">
+                  <input autofocus value="{{$item->title}}" type="text" class="form-control" name="title" id="title" placeholder="Title">
                 </div>
-                <div class="form-group row">
-                    <label for="name" class="col-sm-4 col-form-label">Question Body</label>
-                    <div class="col-sm-6">
-                        <textarea autofocus class="form-control" name="body" id="body" placeholder="Enter your Question">{{$question->body}}</textarea>
-                    </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="summary" class="col-sm-2 col-form-label">Summary</label>
+                <div class="col-sm-8">
+                    <textarea rows="4" maxlength="150" class="form-control" name="summary" id="summary" placeholder="Summary">{{$item->summary}}</textarea>
                 </div>
-
-                <div class="form-group row">
-                    <label for="specialties_id" class="col-sm-4 col-form-label">Specialty</label>
-                    <div class="col-2">
-                        <select autofocus id="specialties_id" class="form-control" name="specialties_id" >
-                            <option value="">Select Specialty</option>
-                            @foreach($specialties as $specialty)
-                            <option {{request()['specialties_id']==$specialty->id?"selected":""}} value='{{$specialty->id}}'>{{$specialty->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="details" class="col-sm-2 col-form-label">Details</label>
+                <div class="col-sm-8">
+                    <textarea rows="8" class="form-control" name="details" id="details" placeholder="Details">{{$item->details}}</textarea>
                 </div>
-                
-                <button type="submit" class="btn btn-success mr-2">Submit</button>
-                <a href="/admin/question" class="btn btn-dark">Cancel</a>
-            </form>
-        </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-8 offset-sm-2">
+                    <input type='hidden' value='0' name='active'/>
+                    <label><input  {{$item->active?"checked":""}} type="checkbox" value='1' name='active' id='active' /> Active</label>
+                    
+                </div>
+            </div>
+            
+            
+            <div class="form-group row">
+                <label for="flePhoto" class="col-sm-2 col-form-label">Photo</label>
+                <div class="col-sm-8">
+                    <input type="file" name="flePhoto" />
+                    @if($item->image)
+                    <div>
+                        <img class='img-fluid img-thumbnail' src='{{asset("storage/images/".$item->image)}}' />
+                    </div>
+                    @endif
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-8 offset-sm-2">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                    <a class="btn btn-dark" href="/admin/post">Cancel</a>
+                </div>
+            </div>
+        </form>
     </div>
-</div>
 
 @endsection
 

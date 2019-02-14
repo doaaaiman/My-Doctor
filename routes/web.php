@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@welcome');
+Route::get('/MyDoctor/departments', 'HomeController@departments');
+Route::get('/MyDoctor/doctors', 'HomeController@doctors');
 
 Auth::routes();
 

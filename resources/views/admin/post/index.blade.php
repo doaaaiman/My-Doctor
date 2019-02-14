@@ -41,7 +41,7 @@
                         <br>
                         <br>
                                 <a href='/admin/post/{{$post->id}}/comments' class="btn btn-info btn-fw">All Comments</a>
-                                <!--<a href='/admin/post/{{$post->id}}/edit' class="btn btn-primary btn-fw">Edit</a>-->
+                                <a href='/admin/post/{{$post->id}}/edit' class="btn btn-primary btn-fw">Edit</a>
                                 <a href='/admin/post/{{$post->id}}/delete' onclick='return confirm("Are you sure?")' class="btn btn-danger btn-fw">Delete</a>
                     </div>
                 </li>

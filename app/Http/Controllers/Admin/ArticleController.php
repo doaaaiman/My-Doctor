@@ -99,13 +99,32 @@ class ArticleController extends BaseController
         //
     }
 
-    public function edit($id) {
-        //
+    public function edit($id)
+    {
+        $item = Post::find($id);
+        if(!$item){
+            \Session::flash('msg','e:Invalid Item ID');
+            return redirect('/admin/article');        
+        }
+        return view('admin.post.edit')->with('title','Edit Post')
+            ->with('item',$item);
     }
 
-  
-    public function update(Request $request, $id) {
-        //
+    
+    public function update($id, PostRequest $request)
+    {
+        $photo='';
+        $item = Post::find($id);
+        if($request->hasFile('flePhoto')){
+            $photo = basename($request->flePhoto->store('public/images'));
+            //$item->image = $photo;
+        }
+         $request['photo'] = $photo;
+       // dd($photo);
+        $item->update($request->all());
+      //dd($item);
+        \Session::flash('msg','s:Post Updated Successfully');
+        return redirect('/admin/post');
     }
 
     public function destroy($id) {
