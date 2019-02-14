@@ -2,16 +2,6 @@
 @section('title',$title)
 @section('content')
 
-<section class="banner-area other-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Departments</h1>
-                    <a href="/">Home</a> <span>|</span> <a href="/MyDoctor/departments">Departments</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="container mt-5">
         <div class="bd-example mt-1">
