@@ -96,7 +96,7 @@
                             @endif
                         @else
                             <li class="menu-has-children">
-                            <a href="blog-home.html">{{ Auth::user()->name }} - {{ Auth::user()->type }} <span class="caret"></span></a>
+                            <a href="/">{{ Auth::user()->name }} - {{ Auth::user()->type }} <span class="caret"></span></a>
                                 <ul>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

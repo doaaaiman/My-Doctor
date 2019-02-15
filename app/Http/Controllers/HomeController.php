@@ -7,6 +7,7 @@ use App\Slider;
 use App\Specialty;
 use App\Doctor;
 use App\User;
+use App\Comment;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,26 @@ class HomeController extends Controller
           ->with('posts',$posts)
            ->with('sliders',$sliders);
     }
+    
+     public function show($id)
+    {
+        $post = Post::find($id);
+         $comments = Comment::all();
+        return view('show-post')
+        ->with('title','Show Post Detailes')
+          ->with('post',$post)
+            ->with('comments', $comments);
+    }
+    
+//     public function comments($id) {
+//        $post = Post::find($id);
+//        $comment = Comment::all();
+//
+//        return view('show-post')
+//                        ->with('title', 'All Comments')
+//                        ->with('post', $post)
+//                        ->with('comments', $comment);
+//    } 
     
     public function departments()
     {

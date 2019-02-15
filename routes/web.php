@@ -74,9 +74,12 @@ Route::get('/register/doctor','Auth\RegisterController@doctorRegister')->name('d
 Route::post('/register/doctor','Auth\RegisterController@postDoctorRegister')->name('post-doctor-register');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/post/{id}', 'HomeController@show')->name('post.show');
+
 Route::resource('/doctor/post', 'Doctor\PostController');
 Route::get('/doctor/home', 'Doctor\HomeController@index')->name('doctor.home');
 Route::get('/patient/home', 'Patient\HomeController@index')->name('patient.home');
+Route::post('/patient/comment/{id}/addComment', 'Patient\HomeController@postAddComment')->name('patient.comment');
 
 
 /***********************QuestionControllerForDoctor*************/
@@ -84,3 +87,7 @@ Route::get('/doctor/question/{id}/answer','Doctor\QuestoinController@answers');
 Route::get('/doctor/question/{id}/addAnswer','Doctor\QuestoinController@addAnswer');
 Route::post('/doctor/question/{id}/addAnswer','Doctor\QuestoinController@postAddAnswer');
 Route::resource('/doctor/question', 'Doctor\QuestoinController');
+
+/***********************QuestionControllerForPatient*************/
+Route::get('/patient/question/{id}/answer','Patient\MyQuestoinController@answers');
+Route::resource('/patient/question', 'Patient\MyQuestoinController');

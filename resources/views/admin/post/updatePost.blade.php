@@ -26,8 +26,12 @@
                         <textarea autofocus class="form-control" name="body" id="body" placeholder="Enter your answer">{{old('body')}}</textarea>
                     </div>
                 </div>
+                <div class="form-group row">
+                <div class="col-sm-8 offset-sm-2">
                 <button type="submit" class="btn btn-success mr-2">Submit</button>
                 <a href="/admin/question" class="btn btn-dark">Cancel</a>
+                </div>
+                </div>
             </form>
         </div>
     </div>

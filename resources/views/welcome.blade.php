@@ -103,7 +103,7 @@
                             </div>
                             <h3><a href="blog-details.html">{{$article->title}}</a></h3>
                             <p>{{$article->summary}}</p>
-                            <a href="/articles/{{$article->id}}" class="news-btn">read more <i class="fa fa-long-arrow-right"></i></a>
+                            <a href="/post/{{$article->id}}" class="news-btn">read more <i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
