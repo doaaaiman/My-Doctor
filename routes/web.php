@@ -76,6 +76,7 @@ Route::post('/register/doctor','Auth\RegisterController@postDoctorRegister')->na
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/post/{id}', 'HomeController@show')->name('post.show');
 
+/******************/
 Route::resource('/doctor/post', 'Doctor\PostController');
 Route::get('/doctor/home', 'Doctor\HomeController@index')->name('doctor.home');
 Route::get('/patient/home', 'Patient\HomeController@index')->name('patient.home');

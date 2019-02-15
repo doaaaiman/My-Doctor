@@ -2,11 +2,7 @@
 @section('title',$title)
 @section('content')
 <br>
-<br>
-<br>
-<br><br>
-<br><br>
-<br>
+
     <!-- Main Content -->
     <div class="container">
         <form method="post" enctype="multipart/form-data"  action="/admin/article/{{$item->id}}">

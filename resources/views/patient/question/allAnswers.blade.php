@@ -2,11 +2,7 @@
 @section('title',$title)
 @section('content')
 <br>
-<br>
-<br>
-<br><br>
-<br><br>
-<br>
+
 
 <div class="col-lg-12 stretch-card">
 

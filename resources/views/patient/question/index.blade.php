@@ -2,11 +2,6 @@
 @section('title',$title)
 @section('content')
 <br>
-<br>
-<br>
-<br><br>
-<br><br>
-<br>
 
 
 <!-- Main Content -->

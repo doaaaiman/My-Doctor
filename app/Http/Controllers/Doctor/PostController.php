@@ -40,8 +40,11 @@ class PostController extends BaseController
         return view('doctor.post.create')
                 ->with('title','Create New Post');
     }
+    
     public function store(PostRequest $request)
     {
+       // dd($request);
+        $user = \Auth::user();
         $photo = '';
         if($request->hasFile('flePhoto')){
             $photo = basename($request->flePhoto->store('public/images'));
@@ -54,6 +57,7 @@ class PostController extends BaseController
         }
         $request['image'] = $photo;
        // dd($photo);
+       $request['users_id'] = $user->id;
          Post::create($request->all());
 
         \Session::flash('msg','s:Post Created Successfully');

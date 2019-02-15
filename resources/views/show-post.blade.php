@@ -3,14 +3,7 @@
 @section('content')
 
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 <!-- Main Content -->
 <div class="container center">

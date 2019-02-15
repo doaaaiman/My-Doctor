@@ -115,13 +115,21 @@
             </div>
         </div>
     </header>
-    
-    @yield('content')
+    <br>
+    <br>
+    <br>
+    <br>
+<br>
 
-
-
-
-    
+    @if(isset($title))
+                    <div class="container">
+                        <h3 class="pt-3">{{$title}}</h3>
+                        <hr>
+                    </div>
+                    @endif
+                    @include('_msg')
+                    @yield('content')
+ 
     <!-- Footer Area Starts -->
     <footer class="footer-area section-padding">
         <div class="footer-widget">
