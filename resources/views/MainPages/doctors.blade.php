@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',$title)
+@section('title','Doctors')
 @section('content')
 <!-- Banner Area Starts -->
     <section class="banner-area other-page">

@@ -21,7 +21,7 @@ class InsertLinks extends Seeder {
 
         $link = Link::create(['title' => 'Doctors', 'parent_id' => 0, 'show_in_menu' => 1, 'order_id' => 1]);
         // First Menu Blade & Pages childrens
-        Link::create(['title' => 'Manage Doctors', 'url' => '/admin/doctor', 'route' => 'admin.doctor', 'parent_id' => $link->id]);
+        Link::create(['title' => 'Manage Doctors', 'url' => '/admin/doctors', 'route' => 'admin.doctors', 'parent_id' => $link->id]);
         Link::create(['title' => 'Manage Speciality', 'url' => '/admin/specialty', 'route' => 'admin.specialty', 'parent_id' => $link->id]);
         Link::create(['title' => 'Manage Posts', 'url' => '/admin/post', 'route' => 'admin.post', 'parent_id' => $link->id]);
         

@@ -3,8 +3,6 @@
 @section('content')
 <br>
 
-
-
 <!-- Main Content -->
     <div class="container">
             <form class="row">

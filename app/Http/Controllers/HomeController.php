@@ -52,7 +52,6 @@ class HomeController extends Controller
         $specialties = Specialty::all();
         
         return view('MainPages.departments')
-        ->with('title','Departments')
           ->with('specialties',$specialties);
     }
     
@@ -64,7 +63,6 @@ class HomeController extends Controller
                 ->orderBy('id','desc')->take(4)->get();
     
         return view('MainPages.doctors')
-        ->with('title','Doctors')
           ->with('doctors',$doctors)
                  ->with('users',$users);
     }
