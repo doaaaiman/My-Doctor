@@ -14,6 +14,9 @@
                 <form class='row'>
                     <div class="col-sm-10">
                         <div class="row text-right no-gutters">
+                            <div class="col-sm-2">
+                         <a href='/admin/patients/create' class='btn  btn-primary px-3 py-2'><i class="fas fa-user-plus pr-2"></i>Create New Paients</a>
+                    </div>
                     <div class="col-sm-3  ml-auto mr-2">
                         <input maxlength="30" type="text" class="form-control" name="q" value="{{request()['q']}}" placeholder="Search..">
                     </div>

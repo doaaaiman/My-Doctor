@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Specialty;
 use App\Answer;
 use App\Question;
+use App\User;
+use App\Doctor;
 use App\Http\Requests\QuestionRequest;
 
 class MyQuestoinController extends BaseController
@@ -63,45 +65,47 @@ class MyQuestoinController extends BaseController
     {
          $question = Question::find($id);
          $answers=Answer::all();
-         
-     return view('admin.question.allAnswers')
+          $doctors=User::all();
+          
+     return view('patient.question.allAnswers')
            ->with('title','All Answers')
             ->with('question',$question)
-             ->with('answers',$answers);
+             ->with('answers',$answers)
+              ->with('doctors',$doctors);
     }
     
         
-     public function delete($id)
-    {
-         $answer= Answer::find($id);
-         $answer->delete();
-
-        \Session::flash('msg','s:Answer Deleted Successfully');
-        return redirect('/admin/question');
-    }
+//     public function delete($id)
+//    {
+//         $answer= Answer::find($id);
+//         $answer->delete();
+//
+//        \Session::flash('msg','s:Answer Deleted Successfully');
+//        return redirect('/admin/question');
+//    }
     
-    public function addAnswer($id)
-    {
-         $question = Question::find($id);
-     return view('admin.question.createAnswer')
-           ->with('title','Create New answer')
-            ->with('question',$question);
-    }
-    
-public function postAddAnswer(Request $request,$id)
-    {
-     $request->validate([
-             'body'=>'required|max:250'
-        ]);
-     $user = \Auth::user();
-        
-        $request['users_id'] = $user->id;
-        $request['questions_id'] = $id;
-       $d= Answer::create($request->all());
-        //dd($d);
-        \Session::flash('msg','s:Answer Created Successfully');
-        return redirect('/admin/question');
-    }
+//    public function addAnswer($id)
+//    {
+//         $question = Question::find($id);
+//     return view('admin.question.createAnswer')
+//           ->with('title','Create New answer')
+//            ->with('question',$question);
+//    }
+//    
+//public function postAddAnswer(Request $request,$id)
+//    {
+//     $request->validate([
+//             'body'=>'required|max:250'
+//        ]);
+//     $user = \Auth::user();
+//        
+//        $request['users_id'] = $user->id;
+//        $request['questions_id'] = $id;
+//       $d= Answer::create($request->all());
+//        //dd($d);
+//        \Session::flash('msg','s:Answer Created Successfully');
+//        return redirect('/admin/question');
+//    }
     
     /*
      public function edit($id)

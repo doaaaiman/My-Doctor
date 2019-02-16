@@ -4,22 +4,19 @@ namespace App\Http\Controllers\Doctor;
 
 use Illuminate\Http\Request;
 use App\Post;
-use App\Doctor;
 use App\Http\Requests\PostRequest;
 
 class PostController extends BaseController
 {
     public function index(Request $request)
     {
-        
+      
          $doctor = \Auth::user();
-        //dd($user->id);
         $q = $request['q'];
         $active = $request['active'];
         $items = Post::whereRaw('true');
         
          $items=$items->where('users_id',$doctor->id); 
-         //dd($items);
         if($q)
             $items->whereRaw('(title like ? )',["%$q%"]);
 
@@ -43,12 +40,11 @@ class PostController extends BaseController
     
     public function store(PostRequest $request)
     {
-       // dd($request);
+     
         $user = \Auth::user();
         $photo = '';
         if($request->hasFile('flePhoto')){
             $photo = basename($request->flePhoto->store('public/images'));
-           // dd($photo);
         }
         else{
             \Session::flash('msg','e:You must select Post Image');
@@ -56,7 +52,7 @@ class PostController extends BaseController
         
         }
         $request['image'] = $photo;
-       // dd($photo);
+       
        $request['users_id'] = $user->id;
          Post::create($request->all());
 
@@ -79,12 +75,12 @@ class PostController extends BaseController
     
     public function update($id, PostRequest $request)
     {
-        $item = Article::find($id);
+        $item = Post::find($id);
         if($request->hasFile('flePhoto')){
             $photo = basename($request->flePhoto->store('public/images'));
-            //$item->image = $photo;
-            $request['image'] = $photo;
+            //$item->image = $photo;   
         }
+        $request['photo'] = $photo;
         $item->update($request->all());
 
         \Session::flash('msg','s:Post Updated Successfully');

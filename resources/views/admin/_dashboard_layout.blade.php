@@ -150,8 +150,8 @@
             <li class="breadcrumb-item active">@yield('intitle')</li>
           </ol>
               @if(isset($title))
-                    <div class="container mt-5">
-                        <h1 class="pt-3">{{$title}}</h1>
+                    <div class="container ">
+                        <h3 class="pt-3">{{$title}}</h3>
                         <hr>
                     </div>
                     @endif

@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="/medino/assets/css/owl-carousel.min.css">
     <link rel="stylesheet" href="/medino/assets/css/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="/medino/assets/css/linearicons.css">
-    <link rel="stylesheet" href="/medino/assets/css/style.css">
     
+    <link rel="stylesheet" href="/medino/assets/css/style.css">
+    <link href="/medino/assets/css/nice-select.css" rel="stylesheet" type="text/css"/>
     @yield('css')
 </head>
 <body>
@@ -39,7 +40,9 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <?php
+                        
+                         @guest
+                         <?php
                             $menus = App\Menu::where('active',1)->get();
                         ?>
                         @foreach($menus->where('parent_id',0) as $topMenu)
@@ -61,7 +64,7 @@
                         @endif
 
                         @endforeach
-                         @guest
+                         
                             <li>
                                 <a href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -74,17 +77,62 @@
                                 </li>
                             @endif
                         @else
+                        
+                            
+                            @if(Auth::user()->type == 'admin')
+                                <li  class="menu-active">
+                                    <a href='/admin/users'>Admin Panel</a>
+                                </li>
+                                
+                            @elseif(Auth::user()->type == 'doctor')
+                                <li  class="menu-active">
+                                    <a href='/doctor/updateInfo'>Doctor Panel</a>
+                                </li>
+                                <li  class="menu-active">
+                                    <a href='/doctor/post'>Doctor post</a>
+                                </li>
+                                <li  class="menu-active">
+                                    <a href='/doctor/question'>Doctor Question</a>
+                                </li>
+                            @else
+                                <li  class="menu-active">
+                                    <a href='/patient/updateInfo'>Patient Panel</a>
+                                </li>
+                                <li  class="menu-active">   
+                                  <a href='/patient/question'>My Previous Question</a>
+                                </li>
+                                 <li  class="menu-active">
+                                    <a href='/patient/question/create'>Create New Question</a>
+                                </li>
+                            @endif
+                            
                             <li class="menu-has-children">
                             <a href="/">{{ Auth::user()->name }} - {{ Auth::user()->type }} <span class="caret"></span></a>
                                 <ul>
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                        @if(Auth::user()->type == 'admin')
+                                        <a class="dropdown-item" href="/admin/home/changepassword">
+                                        Change Password
+                                      </a>
+                                         @elseif(Auth::user()->type == 'doctor')
+                                         <a class="dropdown-item" href="/doctor/home/changepassword">
+                                        Change Password
+                                      </a>
+                                        @else
+                                         <a class="dropdown-item" href="/patient/home/changepassword">
+                                        Change Password
+                                      </a>
+                                        @endif
+                                        
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form></li>
+                                    </form>
+                                    </li>
                                 </ul>
                             </li>
                         @endguest
@@ -98,17 +146,12 @@
     <br>
     <br>
     <br>
-<br>
-
-    @if(isset($title))
-                    <div class="container">
-                        <h3 class="pt-3">{{$title}}</h3>
-                        <hr>
-                    </div>
-                    @endif
+    <br>
                     @include('_msg')
                     @yield('content')
- 
+ <br>
+    <br>
+    <br>
     <!-- Footer Area Starts -->
     <footer class="footer-area section-padding">
         <div class="footer-widget">

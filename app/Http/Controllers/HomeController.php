@@ -66,6 +66,12 @@ class HomeController extends Controller
           ->with('doctors',$doctors)
                  ->with('users',$users);
     }
-    
+       public function posts()
+    {
+        $posts = Post::where('active',1)->orderBy('id','desc')->get();
+        
+        return view('MainPages.posts')
+         ->with('posts',$posts);
+    }
     
 }

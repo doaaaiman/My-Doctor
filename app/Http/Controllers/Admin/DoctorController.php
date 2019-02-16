@@ -6,6 +6,7 @@ use App\User;
 use App\Doctor;
 use App\Specialty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class DoctorController extends BaseController {
@@ -33,6 +34,36 @@ class DoctorController extends BaseController {
                         ->with('users', $users);
     }
 
+    public function create() {
+        //
+         $specialties = Specialty::all();
+        return view('admin.doctors.create')
+                     ->with('title', 'Create New Doctor')
+                ->with('specialties',$specialties);
+    }
+
+    public function store(Request $request) {
+        $request->validate([
+            'name' => 'required|max:100',
+            'password' => 'required|max:100',
+            'email' => 'required|email|max:100|unique:users'
+        ]);
+        
+        $doctor = Doctor::create($request->all());
+        $user = User::create([
+            'name' => $request['name'],
+            'type' => 'doctor',
+            'type_id' => $doctor->id,
+            'email' => $request['email'],
+            'active'=>$request['active'],
+            'password' => Hash::make($request['password']),
+        ]);
+        
+        \Session::flash('msg', 'Doctor created successfully');
+
+        return redirect('/admin/doctors/create');
+    }
+    
     public function edit($id) {
         $doctor = Doctor::find($id);
       $specialties = Specialty::all();
@@ -67,8 +98,8 @@ class DoctorController extends BaseController {
     public function destroy($id) {
         $doctor = User::find($id);
         $doctor->delete();
-        \Session::flash('msg', 'User deleted successfully');
-        return redirect('/admin/users');
+        \Session::flash('msg', 'Doctor deleted successfully');
+        return redirect('/admin/doctors');
     }
 
 }

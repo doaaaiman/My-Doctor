@@ -76,12 +76,14 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+        
         $doctor = Doctor::create($request->all());
         $user = User::create([
             'name' => $request['name'],
             'type' => 'doctor',
             'type_id' => $doctor->id,
             'email' => $request['email'],
+            'active'=>$request['active'],
             'password' => Hash::make($request['password']),
         ]);
         if($user){
@@ -98,7 +100,7 @@ class RegisterController extends Controller
     {
       
         $patient = Patient::create($data);
-//dd($patient);
+        
         return User::create([
             'name' => $data['name'],
             'type' => 'patient',

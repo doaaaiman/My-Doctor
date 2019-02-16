@@ -12,23 +12,7 @@ use App\Specialty;
 
 class QuestoinController extends BaseController
 {
-   public function getDetails()
-    {
-       $user = \Auth::user();
-       $type_id=\Auth::user()->type_id;
-       
-      // if($type==doctor){
-           $doctor = Doctor::where('id',$type_id);
-           $mobile= $doctor->mobile_no;
-           $specialty= $doctor->specialties_id;
-     //  }   
-        return $mobile
-           ->with('specialty',$specialty);
-        //dd($mobile/$specialty);
-    } 
-    
-    
-    
+   
     public function index(Request $request)
     {
         $user = \Auth::user();
